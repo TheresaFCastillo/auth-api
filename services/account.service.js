@@ -37,10 +37,10 @@ async function register(params, origin) {
     account.lastName = params.lastName;
     account.email = params.email;
     account.role = isFirstAccount ? 'Admin' : 'User';
-    account.verificationToken = crypto.randomBytes(40).toString('hex');
+   account.verificationToken = crypto.randomBytes(40).toString('hex');
     account.passwordHash = await bcrypt.hash(params.password, 10);
-
     await account.save();
+    console.log('SAVED TOKEN:', account.verificationToken); // add this
     await sendVerificationEmail(account, origin);
 }
 
