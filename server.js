@@ -36,10 +36,11 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
 
+
 db.authenticate()
     .then(() => {
         console.log('Database connected successfully');
-        return db.sync({ alter: true });
+        return db.sync();
     })
     .then(() => {
         app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

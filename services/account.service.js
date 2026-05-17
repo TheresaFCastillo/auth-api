@@ -192,8 +192,10 @@ function basicDetails(account) {
     return { id, title, firstName, lastName, email, role, verified, createdAt };
 }
 
+
 async function sendVerificationEmail(account, origin) {
-    const verifyUrl = `${origin}/account/verify-email?token=${account.verificationToken}`;
+    const baseUrl = origin || 'http://localhost:4200';
+    const verifyUrl = `${baseUrl}/account/verify-email?token=${account.verificationToken}`;
     await sendEmail({
         to: account.email,
         subject: 'Sign-up Verification - Verify Email',
